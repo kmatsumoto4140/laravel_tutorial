@@ -14,11 +14,8 @@
                         </div>
                     @endif
 
-                    You are logged in!
-                </div>
-                    <div class="card-header">Dashboard</div>
-                <div class="card-body">
-                        <a href="http://192.168.0.160/posts" >blogページに移動!</a>
+                    You are logged in!<br>
+                    <a href=http://192.168.0.160/posts >blogはこちら!</a>
                 </div>
             </div>
         </div>

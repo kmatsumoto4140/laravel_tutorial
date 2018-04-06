@@ -21,58 +21,55 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    @yield('app')
-    @yield('javascripts')
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-    {{-- <DIV ID="APP">
-        <NAV CLASS="NAVBAR NAVBAR-EXPAND-MD NAVBAR-LIGHT NAVBAR-LARAVEL">
-            <DIV CLASS="CONTAINER">
-                <A CLASS="NAVBAR-BRAND" HREF="{{ URL('/') }}">
-                    {{ CONFIG('APP.NAME', 'LARAVEL') }}
-                </A>
-                <BUTTON CLASS="NAVBAR-TOGGLER" TYPE="BUTTON" DATA-TOGGLE="COLLAPSE" DATA-TARGET="#NAVBARSUPPORTEDCONTENT" ARIA-CONTROLS="NAVBARSUPPORTEDCONTENT" ARIA-EXPANDED="FALSE" ARIA-LABEL="TOGGLE NAVIGATION">
-                    <SPAN CLASS="NAVBAR-TOGGLER-ICON"></SPAN>
-                </BUTTON>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav mr-auto">
 
-                <DIV CLASS="COLLAPSE NAVBAR-COLLAPSE" ID="NAVBARSUPPORTEDCONTENT">
-                    <!-- LEFT SIDE OF NAVBAR -->
-                    <UL CLASS="NAVBAR-NAV MR-AUTO">
+                    </ul>
 
-                    </UL>
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
 
-                    <!-- RIGHT SIDE OF NAVBAR -->
-                    <UL CLASS="NAVBAR-NAV ML-AUTO">
-                        <!-- AUTHENTICATION LINKS -->
-                        @GUEST
-                            <LI><A CLASS="NAV-LINK" HREF="{{ ROUTE('LOGIN') }}">{{ __('LOGIN') }}</A></LI>
-                            <LI><A CLASS="NAV-LINK" HREF="{{ ROUTE('REGISTER') }}">{{ __('REGISTER') }}</A></LI>
-                        @ELSE
-                            <LI CLASS="NAV-ITEM DROPDOWN">
-                                <A ID="NAVBARDROPDOWN" CLASS="NAV-LINK DROPDOWN-TOGGLE" HREF="#" ROLE="BUTTON" DATA-TOGGLE="DROPDOWN" ARIA-HASPOPUP="TRUE" ARIA-EXPANDED="FALSE" V-PRE>
-                                    {{ AUTH::USER()->NAME }} <SPAN CLASS="CARET"></SPAN>
-                                </A>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
 
-                                <DIV CLASS="DROPDOWN-MENU" ARIA-LABELLEDBY="NAVBARDROPDOWN">
-                                    <A CLASS="DROPDOWN-ITEM" HREF="{{ ROUTE('LOGOUT') }}"
-                                       ONCLICK="EVENT.PREVENTDEFAULT();
-                                                     DOCUMENT.GETELEMENTBYID('LOGOUT-FORM').SUBMIT();">
-                                        {{ __('LOGOUT') }}
-                                    </A>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-                                    <FORM ID="LOGOUT-FORM" ACTION="{{ ROUTE('LOGOUT') }}" METHOD="POST" STYLE="DISPLAY: NONE;">
-                                        @CSRF
-                                    </FORM>
-                                </DIV>
-                            </LI>
-                        @ENDGUEST
-                    </UL>
-                </DIV>
-            </DIV>
-        </NAV>
-
-        <MAIN CLASS="PY-4">
-            @YIELD('CONTENT')
-        </MAIN>
-    </DIV> --}}
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
 </body>
 </html>

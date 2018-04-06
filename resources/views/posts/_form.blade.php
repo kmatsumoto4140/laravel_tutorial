@@ -1,5 +1,3 @@
-@include('posts._form')
-
 <div>
     {{ Form::text('title', $post->title) }}
 </div>

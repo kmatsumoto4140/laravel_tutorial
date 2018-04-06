@@ -1,17 +1,11 @@
 @extends('layouts.app')
 
-@section('app')
+@section('content')
 
 <h1>posts.edit</h1>
 
 {{ Form::open(['route' => ['posts.update', $post->id], 'method' => 'put']) }}
-    <div>
-        {{ Form::text('title', $post->title) }}
-    </div>
-
-    <div>
-        {{ Form::textarea('content', $post->content) }}
-    </div>
+    @include('posts._form')
 
     {{ Form::submit('update') }}
 {{ Form::close() }}
