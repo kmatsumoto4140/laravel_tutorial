@@ -13,22 +13,23 @@ class PostsController extends Controller
         //dump($request->all());
         //dump($request->title);
 
-        // $keyword = $request->keyword;
+         $keyword = $request->keyword;
 
-        // if($keyword == null){
-        //     $posts = Post::all();
-        // }else{
-        //     $posts = Post::where('title', 'like', '%' . $keyword . '%')->get();
-        // }
+        //  if($keyword == null){
+        //      $posts = Post::all();
+        //  }else{
+        //      $posts = Post::where('title', 'like', '%' . $keyword . '%')->get();
+        //  }
 
         $query = Post::query();
 
-        // タイトル検索
+        //タイトル検索
         if ($request->keyword) {
             $query->where('title', 'like', '%' . $keyword . '%');
         }
 
-        $posts = $query->get();
+        // $posts = $query->get();
+        $posts = $query->paginate(5);
 
         // dd($posts);
         // dump($posts);
@@ -65,7 +66,7 @@ class PostsController extends Controller
     {
         //dd($request->all());
         $this->validate($request, [
-            'title' => 'required|max:5',
+            'title' => 'required|max:15',
             'content' => 'required',
         ]);
 

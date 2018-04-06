@@ -6,7 +6,7 @@
     @if (Session::has('flash_message'))
                 {{ Session::get('flash_message') }}
     @endif
-
+    {{ $posts->links() }}
     <!-- これでリクエストにデータを渡している　-->
     {{ Form::open(['route' => ['posts.index'], 'method' => 'get']) }}
     {{-- {{ Form::open(['posts.index' => 'GET']) }} --}}
